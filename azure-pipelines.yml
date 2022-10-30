@@ -18,7 +18,7 @@ pool:
 
 steps:
 
-- task: TerraformInstaller
+- task: TerraformInstaller@0
   displayName: install terraform 3.29.1
   inputs:
     terraformVersion: 3.29.1
