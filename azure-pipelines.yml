@@ -31,7 +31,7 @@ steps:
     command: version
 
   - task: TerraformCLI@0
-    displayName: Terraform init -backend=false
+    displayName: Terraform init
     inputs:
       command: init
       terraformVersion: ${{ parameters.tfversion }}
