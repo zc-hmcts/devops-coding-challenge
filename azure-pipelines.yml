@@ -9,14 +9,14 @@ pool:
 
 parameters:
   - name: tfversion
-    default: 1.2.5
+    default: 1.3.3
     type: string
-  # - name: overrideAction
-  #   type: string
-  #   default: plan
-  #   values:
-  #     - plan
-  #     - apply
+  - name: overrideAction
+    type: string
+    default: plan
+    values:
+      - plan
+      - apply
 
 steps:
 
@@ -30,17 +30,17 @@ steps:
   inputs:
     command: version
 
-  # - task: TerraformCLI@0
-  #   displayName: Terraform init -backend=false
-  #   inputs:
-  #     command: init
-  #     terraformVersion: ${{ parameters.tfversion }}
+  - task: TerraformCLI@0
+    displayName: Terraform init -backend=false
+    inputs:
+      command: init
+      terraformVersion: ${{ parameters.tfversion }}
 
-  # - task: TerraformCLI@0
-  #   displayName: Terraform plan
-  #   inputs:
-  #     command: plan
-  #     terraformVersion: ${{ parameters.tfversion }}
+  - task: TerraformCLI@0
+    displayName: Terraform plan
+    inputs:
+      command: plan
+      terraformVersion: ${{ parameters.tfversion }}
 
   # - task: TerraformCLI@0
   #   displayName: Terraform apply
