@@ -23,10 +23,9 @@ steps:
     inputs:
       terraformVersion: ${{ parameters.tfversion }}
 
-- script: |
-    echo Hello, world!
-    terraform --version
-  displayName: 'Run a script'
+  - script: |
+      terraform --version
+    displayName: 'Run a script'
 
   # - task: TerraformCLI@0
   #   displayName: Terraform init -backend=false
