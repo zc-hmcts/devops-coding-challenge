@@ -18,15 +18,15 @@ pool:
 
 steps:
 
-- task: TerraformInstaller@0
-  displayName: 'Install Terraform 3.29.1'
+- task: TerraformInstaller
+  displayName: install terraform 3.29.1
   inputs:
-    terraformVersion: '3.29.1'
+    terraformVersion: 3.29.1
 
-- script: |
-    echo hello
-    terraform --version
-  displayName: 'Run a script'
+- task: TerraformCLI@0
+  displayName: 'check terraform version'
+  inputs:
+    command: version
 
   # - task: TerraformCLI@0
   #   displayName: Terraform init -backend=false
