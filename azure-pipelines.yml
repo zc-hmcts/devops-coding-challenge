@@ -14,7 +14,7 @@ parameters:
     values:
       - plan
       - apply
-  tfversion: '3.29.1'
+  - tfversion: '3.29.1'
 
 steps:
 
