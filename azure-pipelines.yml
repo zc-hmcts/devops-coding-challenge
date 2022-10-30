@@ -6,10 +6,6 @@
 trigger:
 - main
 
-pool:
-  name: self-hosted
-  version: 2.211.1
-
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
