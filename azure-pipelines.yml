@@ -30,17 +30,17 @@ steps:
   inputs:
     command: version
 
-  - task: TerraformCLI@0
-    displayName: Terraform init
-    inputs:
-      command: init
-      terraformVersion: 1.3.3
+- task: TerraformCLI@0
+  displayName: Terraform init
+  inputs:
+    command: init
+    terraformVersion: 1.3.3
 
-  - task: TerraformCLI@0
-    displayName: Terraform plan
-    inputs:
-      command: plan
-      terraformVersion: 1.3.3
+- task: TerraformCLI@0
+  displayName: Terraform plan
+  inputs:
+    command: plan
+    terraformVersion: 1.3.3
 
   # - task: TerraformCLI@0
   #   displayName: Terraform apply
