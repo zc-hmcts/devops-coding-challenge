@@ -7,8 +7,8 @@ pool:
   name: Default
   vmImage: 'ubuntu-latest'
 
-# parameters:
-  # tfversion: 1.2.5
+parameters:
+  tfversion: 1.2.5
   # - name: overrideAction
   #   type: string
   #   default: plan
@@ -19,9 +19,9 @@ pool:
 steps:
 
 - task: TerraformInstaller@0
-  displayName: install terraform 1.2.5
+  displayName: 'install terraform ${{ parameters.tfversion }}'
   inputs:
-    terraformVersion: 1.2.5
+    terraformVersion: ${{ parameters.tfversion }}
 
 - task: TerraformCLI@0
   displayName: 'check terraform version'
