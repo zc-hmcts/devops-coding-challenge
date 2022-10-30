@@ -8,13 +8,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 parameters:
+  tfversion: '3.29.1'
   # - name: overrideAction
   #   type: string
   #   default: plan
   #   values:
   #     - plan
   #     - apply
-  - tfversion: '3.29.1'
 
 steps:
 
