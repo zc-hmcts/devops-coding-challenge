@@ -41,10 +41,11 @@ steps:
   inputs:
     command: plan
     terraformVersion: 1.3.3
+    commandOptions: '-out=tfplan'
 
 - task: TerraformCLI@0
   displayName: Terraform apply
-  condition: and(succeeded(), eq(variables['Action'], 'Apply'))
   inputs:
     command: apply
     terraformVersion: ${{ parameters.tfversion }}
+    commandOptions: '--auto-approve tfplan'
