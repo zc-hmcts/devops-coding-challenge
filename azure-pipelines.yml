@@ -7,8 +7,8 @@ pool:
   name: Default
   vmImage: 'ubuntu-latest'
 
-parameters:
-  tfversion: '3.29.1'
+# parameters:
+  # tfversion: 3.29.1
   # - name: overrideAction
   #   type: string
   #   default: plan
@@ -19,11 +19,12 @@ parameters:
 steps:
 
 - task: TerraformInstaller@0
-  displayName: 'Install Terraform ${{ parameters.tfversion }}'
+  displayName: 'Install Terraform 3.29.1'
   inputs:
-    terraformVersion: ${{ parameters.tfversion }}
+    terraformVersion: '3.29.1'
 
 - script: |
+    echo hello
     terraform --version
   displayName: 'Run a script'
 
