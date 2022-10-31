@@ -57,12 +57,12 @@ steps:
     workingDirectory: $(System.DefaultWorkingDirectory)
     environmentServiceNameAzureRM: 'devops-test-service-connection'
 
-- task: TerraformCLI@0
-  displayName: Terraform apply
-  inputs:
-    command: apply
-    conditions: and(succeeded(), eq(variables['isMain'], true), eq('${{ parameters.Action }}', 'apply'))
-    terraformVersion: ${{ variables.tfversion }}
-    commandOptions: '--auto-approve tfplan'
-    workingDirectory: $(System.DefaultWorkingDirectory)
-    environmentServiceNameAzureRM: 'devops-test-service-connection'
+# - task: TerraformCLI@0
+#   displayName: Terraform apply
+#   inputs:
+#     command: apply
+#     conditions: and(succeeded(), eq(variables['isMain'], true), eq('${{ parameters.Action }}', 'apply'))
+#     terraformVersion: ${{ variables.tfversion }}
+#     commandOptions: '--auto-approve tfplan'
+#     workingDirectory: $(System.DefaultWorkingDirectory)
+#     environmentServiceNameAzureRM: 'devops-test-service-connection'
