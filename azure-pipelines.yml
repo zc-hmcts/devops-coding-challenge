@@ -11,7 +11,7 @@ parameters:
   # - name: tfversion
   #   default: 1.3.3
   #   type: string
-  - name: overrideAction
+  - name: Action
     type: string
     default: plan
     values:
@@ -40,6 +40,13 @@ steps:
   inputs:
     command: init
     terraformVersion: ${{ variables.tfversion }}
+    backendType: 'azurerm'
+    workingDirectory: $(System.DefaultWorkingDirectory)
+    backendServiceArm: 'devops-test-service-connection'
+    backendAzureRmResourceGroupName: 'devops-test-rg'
+    backendAzureRmStorageAccountName: 'devops-test-sa'
+    backendAzureRmContainerName: 'devopstest'
+    backendAzureRmKey: 'tf/terraform.tfstate'
 
 - task: TerraformCLI@0
   displayName: Terraform plan
@@ -47,6 +54,8 @@ steps:
     command: plan
     terraformVersion: ${{ variables.tfversion }}
     commandOptions: '-out=tfplan'
+    workingDirectory: $(System.DefaultWorkingDirectory)
+    environmentServiceNameAzureRM: 'devops-test-service-connection'
 
 - task: TerraformCLI@0
   displayName: Terraform apply
@@ -54,3 +63,5 @@ steps:
     command: apply
     terraformVersion: ${{ variables.tfversion }}
     commandOptions: '--auto-approve tfplan'
+    workingDirectory: $(System.DefaultWorkingDirectory)
+    environmentServiceNameAzureRM: 'devops-test-service-connection'

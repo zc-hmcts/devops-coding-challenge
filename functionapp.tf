@@ -30,3 +30,10 @@ resource "azurerm_linux_function_app" "lfa" {
     }
   }
 }
+
+resource "azurerm_application_insights" "ai" {
+  name                = "${var.name}-app-insights"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  application_type    = "web"
+}
