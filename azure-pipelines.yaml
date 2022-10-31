@@ -44,9 +44,9 @@ steps:
     workingDirectory: $(System.DefaultWorkingDirectory)
     backendServiceArm: 'devops-test-service-connection'
     backendAzureRmResourceGroupName: 'devops-test-rg'
-    backendAzureRmStorageAccountName: 'devopstestsazc'
+    backendAzureRmStorageAccountName: 'devopstestsatf'
     backendAzureRmContainerName: 'tfstate'
-    backendAzureRmKey: 'terraform.tfstate'
+    backendAzureRmKey: 'tf/terraform.tfstate'
 
 - task: TerraformCLI@0
   displayName: Terraform plan
