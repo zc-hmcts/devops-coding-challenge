@@ -1,27 +1,32 @@
 resource "azurerm_storage_account" "sa" {
-  name                     = "devopstestsa"
+  name                     = "devopstestsazc"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = var.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
+  account_tier             = var.storage_account_tier
+  account_replication_type = var.storage_account_account_replication_type
 }
 
 resource "azurerm_service_plan" "asp" {
   name                = "${var.name}-asp"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
-  os_type             = "Windows"
-  sku_name            = "Y1"
+  os_type             = "Linux"
+  sku_name            = var.asp_sku
 }
 
-resource "azurerm_windows_function_app" "wfa" {
+resource "azurerm_linux_function_app" "lfa" {
+  count = var.app_instance_count
+
   name                = "${var.name}-function-app"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
 
   storage_account_name = azurerm_storage_account.sa.name
-  # storage_account_access_key = azurerm_storage_account.example.primary_access_key
-  service_plan_id = azurerm_service_plan.asp.id
+  service_plan_id      = azurerm_service_plan.asp.id
 
-  site_config {}
+  site_config {
+    application_stack {
+      dotnet_version = var.dotnet_version
+    }
+  }
 }

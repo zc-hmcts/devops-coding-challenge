@@ -8,9 +8,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 parameters:
-  - name: tfversion
-    default: 1.3.3
-    type: string
+  # - name: tfversion
+  #   default: 1.3.3
+  #   type: string
   - name: overrideAction
     type: string
     default: plan
@@ -18,12 +18,17 @@ parameters:
       - plan
       - apply
 
+
+variables:
+- name: tfversion
+  value: 1.3.3
+
 steps:
 
 - task: TerraformInstaller@0
-  displayName: 'install terraform 1.3.3'
+  displayName: 'install terraform ${{ variables.tfversion }}'
   inputs:
-    terraformVersion: 1.3.3
+    terraformVersion: ${{ variables.tfversion }}
 
 - task: TerraformCLI@0
   displayName: 'check terraform version'
@@ -34,18 +39,18 @@ steps:
   displayName: Terraform init
   inputs:
     command: init
-    terraformVersion: 1.3.3
+    terraformVersion: ${{ variables.tfversion }}
 
 - task: TerraformCLI@0
   displayName: Terraform plan
   inputs:
     command: plan
-    terraformVersion: 1.3.3
+    terraformVersion: ${{ variables.tfversion }}
     commandOptions: '-out=tfplan'
 
 - task: TerraformCLI@0
   displayName: Terraform apply
   inputs:
     command: apply
-    terraformVersion: ${{ parameters.tfversion }}
+    terraformVersion: ${{ variables.tfversion }}
     commandOptions: '--auto-approve tfplan'
