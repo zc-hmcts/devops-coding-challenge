@@ -44,7 +44,7 @@ steps:
     workingDirectory: $(System.DefaultWorkingDirectory)
     backendServiceArm: 'devops-test-service-connection'
     backendAzureRmResourceGroupName: 'devops-test-rg'
-    backendAzureRmStorageAccountName: 'devops-test-sa'
+    backendAzureRmStorageAccountName: 'devopstestsazc'
     backendAzureRmContainerName: 'tfstate'
     backendAzureRmKey: 'terraform.tfstate'
 
