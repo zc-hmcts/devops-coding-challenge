@@ -41,7 +41,3 @@ variable "mssql_server_version" {
 variable "tags" {
   default = {}
 }
-
-variable "zone_redundant" {
-  default = false
-}

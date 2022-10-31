@@ -18,14 +18,12 @@ resource "azurerm_mssql_server" "sql_server" {
 resource "azurerm_mssql_database" "sql_db" {
   count = var.db_instance_count
 
-  name           = "${var.name}-db"
-  server_id      = azurerm_mssql_server.sql_server.id
-  collation      = "SQL_Latin1_General_CP1_CI_AS"
-  license_type   = "LicenseIncluded"
-  max_size_gb    = 5
-  read_scale     = true
-  sku_name       = "S0"
-  zone_redundant = var.zone_redundant
+  name         = "${var.name}-db"
+  server_id    = azurerm_mssql_server.sql_server.id
+  collation    = "SQL_Latin1_General_CP1_CI_AS"
+  license_type = "LicenseIncluded"
+  max_size_gb  = 5
+  sku_name     = "S0"
 
   tags = var.tags
 }
