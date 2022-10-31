@@ -37,13 +37,6 @@ variable "minimum_tls_version" {
 variable "mssql_server_version" {
   default = "12.0"
 }
-variable "sql_sku" {
-  default = "S0"
-}
-
-variable "collation" {
-  default = "SQL_Latin1_General_CP1_CI_AS"
-}
 
 variable "tags" {
   default = {}

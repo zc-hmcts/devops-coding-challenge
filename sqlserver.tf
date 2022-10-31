@@ -20,10 +20,11 @@ resource "azurerm_mssql_database" "sql_db" {
 
   name           = "${var.name}-db"
   server_id      = azurerm_mssql_server.sql_server.id
-  collation      = var.collation
-  max_size_gb    = 4
+  collation      = "SQL_Latin1_General_CP1_CI_AS"
+  license_type   = "LicenseIncluded"
+  max_size_gb    = 5
   read_scale     = true
-  sku_name       = var.sql_sku
+  sku_name       = "S0"
   zone_redundant = true
 
   tags = var.tags
