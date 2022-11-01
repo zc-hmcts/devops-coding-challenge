@@ -1,5 +1,7 @@
 resource "azurerm_mssql_server" "sql_server" {
-  name                          = "${var.name}-zc"
+  count = var.db_instance_count
+
+  name                          = "${var.name}-zc-${count.index}"
   resource_group_name           = azurerm_resource_group.rg.name
   location                      = var.location
   minimum_tls_version           = var.minimum_tls_version
@@ -18,8 +20,8 @@ resource "azurerm_mssql_server" "sql_server" {
 resource "azurerm_mssql_database" "sql_db" {
   count = var.db_instance_count
 
-  name         = "${var.name}-db"
-  server_id    = azurerm_mssql_server.sql_server.id
+  name         = "${var.name}-db-${count.index}"
+  server_id    = azurerm_mssql_server.sql_server[count.index].id
   collation    = "SQL_Latin1_General_CP1_CI_AS"
   license_type = "LicenseIncluded"
   max_size_gb  = 5

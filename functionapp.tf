@@ -7,7 +7,9 @@ resource "azurerm_storage_account" "sa" {
 }
 
 resource "azurerm_service_plan" "asp" {
-  name                = "${var.name}-asp"
+  count = var.app_instance_count
+
+  name                = "${var.name}-asp-${count.index}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
   os_type             = "Linux"
@@ -17,12 +19,12 @@ resource "azurerm_service_plan" "asp" {
 resource "azurerm_linux_function_app" "lfa" {
   count = var.app_instance_count
 
-  name                = "${var.name}-function-app"
+  name                = "${var.name}-function-app-${count.index}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
 
   storage_account_name = azurerm_storage_account.sa.name
-  service_plan_id      = azurerm_service_plan.asp.id
+  service_plan_id      = azurerm_service_plan.asp[count.index].id
 
   site_config {
     application_stack {
