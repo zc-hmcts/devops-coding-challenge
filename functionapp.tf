@@ -45,7 +45,7 @@ resource "azurerm_monitor_autoscale_setting" "autoscale_asp" {
 
   name                = "${var.name}-autoscale"
   resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
+  location            = var.location
   target_resource_id  = azurerm_service_plan.asp[count.index].id
 
   profile {
