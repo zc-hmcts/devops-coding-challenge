@@ -41,3 +41,7 @@ variable "mssql_server_version" {
 variable "tags" {
   default = {}
 }
+
+variable "scaling_notification_email" {
+  default = []
+}

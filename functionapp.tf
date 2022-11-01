@@ -39,3 +39,68 @@ resource "azurerm_application_insights" "ai" {
   resource_group_name = azurerm_resource_group.rg.name
   application_type    = "web"
 }
+
+resource "azurerm_monitor_autoscale_setting" "autoscale_asp" {
+  count = var.app_instance_count
+
+  name                = "${var.name}-autoscale"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  target_resource_id  = azurerm_service_plan.asp[count.index].id
+
+  profile {
+    name = "Scale with Memory Utilisation"
+
+    capacity {
+      default = 1
+      minimum = 1
+      maximum = 1
+    }
+
+    rule {
+      metric_trigger {
+        metric_name        = "MemoryPercentage"
+        metric_resource_id = azurerm_service_plan.asp[count.index].id
+        time_grain         = "PT1M"
+        statistic          = "Average"
+        time_window        = "PT5M"
+        time_aggregation   = "Average"
+        operator           = "GreaterThan"
+        threshold          = 70
+      }
+
+      scale_action {
+        direction = "Increase"
+        type      = "ChangeCount"
+        value     = "1"
+        cooldown  = "PT5M"
+      }
+    }
+
+    rule {
+      metric_trigger {
+        metric_name        = "MemoryPercentage"
+        metric_resource_id = azurerm_service_plan.asp[count.index].id
+        time_grain         = "PT1M"
+        statistic          = "Average"
+        time_window        = "PT10M"
+        time_aggregation   = "Average"
+        operator           = "LessThan"
+        threshold          = 50
+      }
+
+      scale_action {
+        direction = "Decrease"
+        type      = "ChangeCount"
+        value     = "1"
+        cooldown  = "PT5M"
+      }
+    }
+  }
+
+  notification {
+    email {
+      custom_emails = var.scaling_notification_email
+    }
+  }
+}
