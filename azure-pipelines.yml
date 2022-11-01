@@ -7,13 +7,13 @@ pool:
   name: Default
   vmImage: 'ubuntu-latest'
 
-# parameters:
-#   - name: Action
-#     type: string
-#     default: plan
-#     values:
-#       - plan
-#       - apply
+parameters:
+  - name: Action
+    type: string
+    default: plan
+    values:
+      - plan
+      - apply
 
 
 variables:
@@ -45,7 +45,7 @@ steps:
     backendAzureRmContainerName: 'tfstate'
     backendAzureRmKey: 'tf/terraform.tfstate'
 - task: TerraformCLI@0
-  displayName: validate
+  displayName: Terraform validate
   inputs:
     command: 'validate'
     workingDirectory: $(System.DefaultWorkingDirectory)
@@ -61,6 +61,7 @@ steps:
 
 - task: TerraformCLI@0
   displayName: Terraform apply
+  condition: and(succeeded(), eq('${{ parameters.Action }}', 'apply'))
   inputs:
     command: apply
     terraformVersion: ${{ variables.tfversion }}
