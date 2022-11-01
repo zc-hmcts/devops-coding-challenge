@@ -22,6 +22,7 @@ No modules.
 |------|------|
 | [azurerm_application_insights.ai](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_insights) | resource |
 | [azurerm_linux_function_app.lfa](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_function_app) | resource |
+| [azurerm_monitor_autoscale_setting.autoscale_asp](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_autoscale_setting) | resource |
 | [azurerm_mssql_database.sql_db](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_database) | resource |
 | [azurerm_mssql_server.sql_server](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server) | resource |
 | [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
@@ -40,6 +41,7 @@ No modules.
 | <a name="input_minimum_tls_version"></a> [minimum\_tls\_version](#input\_minimum\_tls\_version) | n/a | `string` | `"1.2"` | no |
 | <a name="input_mssql_server_version"></a> [mssql\_server\_version](#input\_mssql\_server\_version) | n/a | `string` | `"12.0"` | no |
 | <a name="input_name"></a> [name](#input\_name) | n/a | `string` | `"devops-test"` | no |
+| <a name="input_scaling_notification_email"></a> [scaling\_notification\_email](#input\_scaling\_notification\_email) | n/a | `list` | `[]` | no |
 | <a name="input_storage_account_account_replication_type"></a> [storage\_account\_account\_replication\_type](#input\_storage\_account\_account\_replication\_type) | n/a | `string` | `"LRS"` | no |
 | <a name="input_storage_account_tier"></a> [storage\_account\_tier](#input\_storage\_account\_tier) | n/a | `string` | `"Standard"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | n/a | `map` | `{}` | no |
