@@ -1,4 +1,6 @@
 # devops-coding-challenge
+
+A repo which will deploy an Azure function and an SQL server
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
