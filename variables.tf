@@ -7,11 +7,11 @@ variable "location" {
 }
 
 variable "app_instance_count" {
-  default = 2
+  default = 1
 }
 
 variable "db_instance_count" {
-  default = 2
+  default = 1
 }
 
 variable "storage_account_tier" {
