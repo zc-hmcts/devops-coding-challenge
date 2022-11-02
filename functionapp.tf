@@ -1,3 +1,8 @@
+resource "azurerm_resource_group" "rg" {
+  name     = "${var.name}-rg"
+  location = var.location
+}
+
 resource "azurerm_storage_account" "sa" {
   name                     = "devopstestsazc"
   resource_group_name      = azurerm_resource_group.rg.name
